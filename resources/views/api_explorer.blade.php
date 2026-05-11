@@ -90,7 +90,6 @@
 @endsection
 
 @section('scripts')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script>
 const API = '{{ url('/api/v1') }}';
 

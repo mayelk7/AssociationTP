@@ -34,6 +34,13 @@
             <!-- Dropdown utilisateur + langue -->
             <ul class="navbar-nav ms-auto align-items-center">
 
+                <!-- Bouton mode sombre -->
+                <li class="nav-item me-2">
+                    <button class="btn btn-link nav-link text-white p-1" onclick="toggleTheme()" title="Changer de thème">
+                        <i class="bi bi-moon-fill fs-5" id="theme-icon"></i>
+                    </button>
+                </li>
+
                 <!-- Sélecteur de langue -->
                 <li class="nav-item dropdown me-3">
                     @php
