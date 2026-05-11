@@ -88,7 +88,7 @@ associationsTP/
 │       ├── association_add.blade.php
 │       ├── association_edit.blade.php
 │       ├── domaine_add.blade.php
-│       ├── domaine_list.blade.php
+│       ├── domaine_list.blade.php            ← Liste + suppression des domaines (admin)
 │       ├── home.blade.php
 │       └── contact.blade.php
 ├── routes/
@@ -169,7 +169,7 @@ erDiagram
         string   name
         string   email
         string   password
-        tinyint  is_admin
+        bigint   is_admin
         datetime email_verified_at
         datetime created_at
         datetime updated_at
@@ -207,7 +207,7 @@ erDiagram
 | `email_asso` | VARCHAR(255) | NULLABLE |
 | `ville_asso` | VARCHAR(255) | NULLABLE |
 | `description_asso` | TEXT | NULLABLE |
-| `domaine_id` | BIGINT UNSIGNED | FK → `domaine.id_domaine` (CASCADE DELETE) |
+| `domaine_id` | BIGINT UNSIGNED | NOT NULL, FK → `domaine.id_domaine` (CASCADE DELETE) |
 | `created_at` | TIMESTAMP | — |
 | `updated_at` | TIMESTAMP | — |
 
@@ -434,7 +434,7 @@ Retourne le détail d'une association. Renvoie `404` si introuvable.
 
 #### `GET /api/v1/emails`
 
-Retourne uniquement les associations ayant un email renseigné (filtre `whereNotNull`).
+Retourne uniquement les associations ayant un email renseigné et non vide (double filtre : `whereNotNull('email_asso')` + `where('email_asso', '!=', '')`).
 
 ```json
 [
@@ -501,7 +501,7 @@ L'authentification est gérée par **Laravel Breeze** avec le driver **Livewire 
 - Sessions stockées en base de données (table `sessions`)
 - Tokens API via **Laravel Sanctum** (table `personal_access_tokens`)
 - Hachage des mots de passe : Bcrypt (12 rounds)
-- Support de la vérification d'email
+- Vérification d'email désactivée (`MustVerifyEmail` commenté dans `User.php`) — la route `/verify-email` existe mais n'est pas enforced
 - Support de la réinitialisation de mot de passe
 
 ### Rôles
@@ -549,8 +549,8 @@ Le projet supporte le **français** (par défaut) et l'**anglais**.
 Route : `POST /contact` — Controller : `ContactController@sendMail`
 
 Le formulaire envoie un email brut via `Mail::raw()` :
-- **Destinataire :** `mael.kerivel@gmail.com`
-- **Expéditeur configuré :** `journee-associations@gmail.com`
+- **Destinataire :** `mael.kerivel@gmail.com` (hardcodé dans le contrôleur)
+- **Expéditeur :** défini par `MAIL_FROM_ADDRESS` dans `.env` (non hardcodé dans le contrôleur)
 - **Sujet :** `Nouveau message Journée des assos : {sujet}`
 - **Reply-To :** adresse de l'expéditeur du formulaire
 - **SMTP local (dev) :** Mailpit sur `localhost:1025`
@@ -571,16 +571,17 @@ Champs validés : `name` (required), `email` (required|email), `subject` (requir
 
 ```bash
 # 1. Cloner le projet dans laragon/www
-git clone <repo> associationsTP
+git clone https://github.com/mayelk7/AssociationTP.git associationsTP
 cd associationsTP
 
 # 2. Installation complète (script composer)
 composer run setup
 # Équivalent à :
 #   composer install
-#   cp .env.example .env && php artisan key:generate
-#   php artisan migrate
-#   npm install && npm run build
+#   cp .env.example .env (seulement si .env absent) && php artisan key:generate
+#   php artisan migrate --force
+#   npm install
+#   npm run build
 ```
 
 ### Configuration `.env`
@@ -711,4 +712,4 @@ Tout ce qui a été réalisé sur ce projet, de A à Z.
 
 ---
 
-*Documentation mise à jour le 11 mai 2026 — v4 (gestion complète des domaines : liste + suppression).*
+*Documentation mise à jour le 11 mai 2026 — v5 (audit et corrections : types DB, API emails, auth, contact, install).*
