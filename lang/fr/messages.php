@@ -58,5 +58,11 @@ return [
     'confirm_delete' => "Voulez-vous vraiment supprimer cette association ?",
     'no_association_found' => "Aucune association trouvée.",
     'domain' => "Domaine",
-    'add_domain' => " Ajouter un domaine",
+    'add_domain' => "Ajouter un domaine",
+    'domain_list' => "Liste des Domaines",
+    'domain_management' => "Gestion des Domaines",
+    'confirm_delete_domain' => "Voulez-vous vraiment supprimer ce domaine ?",
+    'no_domain_found' => "Aucun domaine trouvé.",
+    'domain_in_use' => "Ce domaine est utilisé par des associations et ne peut pas être supprimé.",
+    'association_count' => "Nb. associations",
 ];

@@ -39,8 +39,10 @@ Route::get('/dashboard', function () {
 
     // ASSOCIATION & DOMAINE — écriture (admin uniquement)
     Route::middleware(\App\Http\Middleware\IsAdmin::class)->group(function () {
+        Route::get('/domaine', [DomaineController::class, 'index'])->name('domaine.index');
         Route::get('/domaine/create', [DomaineController::class, 'create'])->name('domaine.create');
         Route::post('/domaine', [DomaineController::class, 'store'])->name('domaine.store');
+        Route::delete('/domaine/{id}', [DomaineController::class, 'destroy'])->name('domaine.destroy');
 
         Route::get('/association/create', [AssociationController::class, 'create'])->name('association.create');
         Route::post('/association', [AssociationController::class, 'store'])->name('association.store');

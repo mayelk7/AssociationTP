@@ -57,4 +57,10 @@ return [
     'no_association_found' => "No association found.",
     'domain' => "Domain",
     'add_domain' => "Add Domain",
+    'domain_list' => "Domain List",
+    'domain_management' => "Domain Management",
+    'confirm_delete_domain' => "Are you sure you want to delete this domain?",
+    'no_domain_found' => "No domain found.",
+    'domain_in_use' => "This domain is used by associations and cannot be deleted.",
+    'association_count' => "Assoc. count",
 ];

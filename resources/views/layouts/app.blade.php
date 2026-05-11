@@ -45,6 +45,13 @@
                             {{ __('messages.association_list') }}
                         </a>
                     </li>
+                    @if(Auth::user()->is_admin)
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('domaine.*') ? 'active' : '' }}" href="{{ route('domaine.index') }}">
+                            {{ __('messages.domain') }}
+                        </a>
+                    </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">
                             {{ __('messages.contact') }}

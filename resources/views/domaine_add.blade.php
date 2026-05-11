@@ -28,7 +28,7 @@
 
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary">{{ __('messages.create') }}</button>
-                <a href="{{ route('association') }}" class="btn btn-secondary">{{ __('messages.cancel') }}</a>
+                <a href="{{ route('domaine.index') }}" class="btn btn-secondary">{{ __('messages.cancel') }}</a>
             </div>
         </form>
     </div>

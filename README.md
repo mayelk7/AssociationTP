@@ -305,7 +305,7 @@ protected $hidden   = ['password', 'remember_token'];
 | **Création d'association** | Formulaire avec validation (nom, email, ville, description, domaine) — admin uniquement |
 | **Modification d'association** | Formulaire pré-rempli, mise à jour en base — admin uniquement |
 | **Suppression d'association** | Suppression avec confirmation, cascade sur les FK — admin uniquement |
-| **Gestion des domaines** | Création d'un nouveau domaine (catégorie) — admin uniquement |
+| **Gestion des domaines** | Liste, création et suppression de domaines (bloquée si des associations y sont liées) — admin uniquement |
 | **Profil utilisateur** | Modification du nom/email, changement de mot de passe, suppression du compte |
 | **Formulaire de contact** | Envoi d'un email vers l'administrateur via SMTP |
 | **Changement de langue** | Bascule FR ↔ EN via session |
@@ -343,8 +343,10 @@ Toutes les routes web sont protégées par `auth` + `LocaleMiddleware`. Les rout
 | GET | `/association/{id}/edit` | AssociationController | Formulaire d'édition |
 | PUT | `/association/{id}` | AssociationController | Mise à jour |
 | DELETE | `/association/{id}` | AssociationController | Suppression |
+| GET | `/domaine` | DomaineController | Liste des domaines |
 | GET | `/domaine/create` | DomaineController | Formulaire de création domaine |
 | POST | `/domaine` | DomaineController | Enregistrement domaine |
+| DELETE | `/domaine/{id}` | DomaineController | Suppression domaine |
 
 **Routes d'authentification** (publiques, via `routes/auth.php`) :
 
@@ -656,7 +658,7 @@ Tout ce qui a été réalisé sur ce projet, de A à Z.
 | # | Ce qui a été fait | Fichiers concernés |
 |---|---|---|
 | 13 | CRUD complet des associations (liste, détail, création, édition, suppression) | `AssociationController.php`, vues `association*.blade.php` |
-| 14 | Création de domaines | `DomaineController.php`, `domaine_add.blade.php` |
+| 14 | Gestion des domaines : liste, création, suppression (protégée si associations liées) | `DomaineController.php`, `domaine_add.blade.php`, `domaine_list.blade.php` |
 | 15 | Liste avec DataTables (tri, pagination, recherche côté client) | `association.blade.php` |
 | 16 | Formulaire de contact avec envoi de mail | `ContactController.php`, `contact.blade.php` |
 | 17 | Page de profil (modifier nom/email, changer mot de passe, supprimer compte) | `ProfileController.php`, `profile/` |
@@ -708,4 +710,4 @@ Tout ce qui a été réalisé sur ce projet, de A à Z.
 
 ---
 
-*Documentation mise à jour le 11 mai 2026 — v3 (gestion des rôles admin).*
+*Documentation mise à jour le 11 mai 2026 — v4 (gestion complète des domaines : liste + suppression).*
