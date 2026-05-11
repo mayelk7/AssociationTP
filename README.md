@@ -88,6 +88,7 @@ associationsTP/
 │       ├── association_add.blade.php
 │       ├── association_edit.blade.php
 │       ├── domaine_add.blade.php
+│       ├── domaine_list.blade.php
 │       ├── home.blade.php
 │       └── contact.blade.php
 ├── routes/
