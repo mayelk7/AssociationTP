@@ -663,17 +663,16 @@ Tout ce qui a été réalisé sur ce projet, de A à Z.
 | 14 | Gestion des domaines : liste, création, suppression (protégée si associations liées) | `DomaineController.php`, `domaine_add.blade.php`, `domaine_list.blade.php` |
 | 15 | Liste avec DataTables (tri, pagination, recherche côté client) | `association.blade.php` |
 | 16 | Formulaire de contact avec envoi de mail | `ContactController.php`, `contact.blade.php` |
-| 17 | Page de profil (modifier nom/email, changer mot de passe, supprimer compte) | `ProfileController.php`, `profile/` |
-| 18 | Bascule de langue FR/EN dans la navbar | `navigation.blade.php`, `LocaleMiddleware.php` |
+| 17 | Bascule de langue FR/EN dans la navbar | `navigation.blade.php`, `LocaleMiddleware.php` |
 
 ### Gestion des rôles
 
 | # | Ce qui a été fait | Fichiers concernés |
 |---|---|---|
-| 19 | Middleware `IsAdmin` : vérifie `is_admin = 1`, retourne 403 sinon | `app/Http/Middleware/IsAdmin.php` |
-| 20 | Séparation des routes : lecture (tous) / écriture (admin) | `routes/web.php` |
-| 21 | Masquage des boutons Ajouter / Modifier / Supprimer pour les non-admins | `association.blade.php`, `association_detail.blade.php` |
-| 22 | Valeur par défaut `is_admin = 0` sur le modèle User (évite l'erreur SQL à l'inscription) | `app/Models/User.php` |
+| 18 | Middleware `IsAdmin` : vérifie `is_admin = 1`, retourne 403 sinon | `app/Http/Middleware/IsAdmin.php` |
+| 19 | Séparation des routes : lecture (tous) / écriture (admin) | `routes/web.php` |
+| 20 | Masquage des boutons Ajouter / Modifier / Supprimer pour les non-admins | `association.blade.php`, `association_detail.blade.php` |
+| 21 | Valeur par défaut `is_admin = 0` sur le modèle User (évite l'erreur SQL à l'inscription) | `app/Models/User.php` |
 
 ---
 
