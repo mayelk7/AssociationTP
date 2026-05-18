@@ -35,7 +35,6 @@ Route::get('/dashboard', function () {
 
     // ASSOCIATION — lecture (tous les utilisateurs connectés)
     Route::get('/association', [AssociationController::class, 'listAsso'])->name('association');
-    Route::get('/association/{id}', [AssociationController::class, 'detail'])->name('association.detail');
 
     // ASSOCIATION & DOMAINE — écriture (admin uniquement)
     Route::middleware(\App\Http\Middleware\IsAdmin::class)->group(function () {
@@ -44,12 +43,16 @@ Route::get('/dashboard', function () {
         Route::post('/domaine', [DomaineController::class, 'store'])->name('domaine.store');
         Route::delete('/domaine/{id}', [DomaineController::class, 'destroy'])->name('domaine.destroy');
 
+        // Routes avec segments fixes doivent être avant la route paramétrée {id}
         Route::get('/association/create', [AssociationController::class, 'create'])->name('association.create');
         Route::post('/association', [AssociationController::class, 'store'])->name('association.store');
         Route::get('/association/{id}/edit', [AssociationController::class, 'edit'])->name('association.edit');
         Route::put('/association/{id}', [AssociationController::class, 'update'])->name('association.update');
         Route::delete('/association/{id}', [AssociationController::class, 'destroy'])->name('association.destroy');
     });
+
+    // Route paramétrée après les routes fixes pour éviter le conflit avec /association/create
+    Route::get('/association/{id}', [AssociationController::class, 'detail'])->name('association.detail');
 
     // LANGUE
     Route::get('lang/{locale}', function ($locale) {
