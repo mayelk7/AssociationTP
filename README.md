@@ -307,7 +307,6 @@ protected $hidden   = ['password', 'remember_token'];
 | **Modification d'association** | Formulaire pré-rempli, mise à jour en base — admin uniquement |
 | **Suppression d'association** | Suppression avec confirmation, cascade sur les FK — admin uniquement |
 | **Gestion des domaines** | Liste, création et suppression de domaines (bloquée si des associations y sont liées) — admin uniquement |
-| **Profil utilisateur** | Modification du nom/email, changement de mot de passe, suppression du compte |
 | **Formulaire de contact** | Envoi d'un email vers l'administrateur via SMTP |
 | **Changement de langue** | Bascule FR ↔ EN via session |
 | **API REST** | 5 endpoints JSON publics en lecture sous `/api/v1` |
